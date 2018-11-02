@@ -88,8 +88,8 @@ class bloomon{
                             }
                             
                         }
-                        //System.out.println(bouquet.spec);
-                        System.out.println(bouquet.spec+" "+num+" "+line);
+                        System.out.println(bouquet.spec);
+                        //System.out.println(bouquet.spec+" "+num+" "+line);
                         bouquets.remove(bouquet);
                         break;
                     }
@@ -103,7 +103,7 @@ class bloomon{
                 //     }
                 //     System.out.println();
                 // }
-                System.out.println("No more flowers can be processed. Exiting....."+num+" "+line);
+                System.out.println("No more flowers can be processed. Exiting.....");
                 System.exit(0);
             } 
         }
