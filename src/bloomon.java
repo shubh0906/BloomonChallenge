@@ -40,7 +40,10 @@ class bloomon{
         while(!(line = br.readLine()).equals("")){
             bouquets.add(new Bouquet(line));
         }
+
+        int num =8;
         while((line = br.readLine())!=null){
+            num++;
             char size = line.charAt(1);
             char flowerType = line.charAt(0);
             int temp[] = flowers.get(size);
@@ -85,21 +88,22 @@ class bloomon{
                             }
                             
                         }
-                        System.out.println(bouquet.spec);
+                        //System.out.println(bouquet.spec);
+                        System.out.println(bouquet.spec+" "+num+" "+line);
                         bouquets.remove(bouquet);
                         break;
                     }
                 }
             } 
             if((totalLargeFLowers+totalSmallFLowers)==256){
-                for(Map.Entry<Character,int[]> e: flowers.entrySet()){
-                    for(int i=0;i<26;i++){
-                        char c= (char)(97+i);
-                        System.out.print(c+" =" +e.getValue()[i]+"     ");
-                    }
-                    System.out.println();
-                }
-                System.out.println("No more flowers can be processed. Exiting.....");
+                // for(Map.Entry<Character,int[]> e: flowers.entrySet()){
+                //     for(int i=0;i<26;i++){
+                //         char c= (char)(97+i);
+                //         System.out.print(c+" =" +e.getValue()[i]+"     ");
+                //     }
+                //     System.out.println();
+                // }
+                System.out.println("No more flowers can be processed. Exiting....."+num+" "+line);
                 System.exit(0);
             } 
         }
