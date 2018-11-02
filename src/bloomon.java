@@ -92,6 +92,13 @@ class bloomon{
                 }
             } 
             if((totalLargeFLowers+totalSmallFLowers)==256){
+                for(Map.Entry<Character,int[]> e: flowers.entrySet()){
+                    for(int i=0;i<26;i++){
+                        char c= (char)(97+i);
+                        System.out.print(c+" =" +e.getValue()[i]+"     ");
+                    }
+                    System.out.println();
+                }
                 System.out.println("No more flowers can be processed. Exiting.....");
                 System.exit(0);
             } 
