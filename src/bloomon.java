@@ -29,25 +29,35 @@ class bloomon{
     public static void main(String[] ss)throws Exception{
         List<Bouquet> bouquets = new ArrayList<Bouquet>();
         
+        //maintain count of different types of flower available
         Map<Character,int[]> flowers = new HashMap<>();
         flowers.put('S',new int[26]);
         flowers.put('L',new int[26]);
+        
+        //keep count of flowers
         int totalLargeFLowers = 0;
         int totalSmallFLowers = 0;
 
         BufferedReader br=new BufferedReader(new FileReader("../sample/input.txt"));
         String line = "";
+
+        //get list of bouquet
         while(!(line = br.readLine()).equals("")){
             bouquets.add(new Bouquet(line));
         }
 
         int num =8;
+        
         while((line = br.readLine())!=null){
             num++;
             char size = line.charAt(1);
+
             char flowerType = line.charAt(0);
+
+            //adding flower to available list
             int temp[] = flowers.get(size);
             temp[flowerType-'a']++;
+
             int TEMP_flowerCount =0;
             if(size =='S'){
                 totalSmallFLowers++;
@@ -60,12 +70,16 @@ class bloomon{
             for(Bouquet bouquet : bouquets){
                 if(bouquet.size==size){
                     boolean flag = true;
+                    //check if all the flowers that need to make this bouquet are available
                     for(Map.Entry<Character,Integer> e: bouquet.flowers.entrySet()){
                         if(temp[e.getKey()-'a']<e.getValue()){
                             flag = false;
                             break;
                         }
                     }
+                    /* if all flowers needed to make this bouquet are available then assign those flowers to this bouquet
+                    and remove flowers from available list and output the bouquet
+                    */
                     if(flag && TEMP_flowerCount>=bouquet.sumOfFlowers+bouquet.extraFLowers){
                         if(size=='S')
                             totalSmallFLowers-=bouquet.sumOfFlowers+bouquet.extraFLowers;
@@ -95,6 +109,7 @@ class bloomon{
                     }
                 }
             } 
+            // totalNumber flowers available in the facility reach 256, exit the processing
             if((totalLargeFLowers+totalSmallFLowers)==256){
                 // for(Map.Entry<Character,int[]> e: flowers.entrySet()){
                 //     for(int i=0;i<26;i++){
@@ -104,7 +119,7 @@ class bloomon{
                 //     System.out.println();
                 // }
                 System.out.println("No more flowers can be processed. Exiting.....");
-                System.exit(0);
+                System.exit(1);
             } 
         }
     }
